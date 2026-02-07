@@ -1,9 +1,9 @@
 <template>
   <SideLogo />
-  <!-- <SideMenu /> -->
+  <SideMenu />
 </template>
 
 <script setup>
-import SideLogo from './components/SideLogo.vue'
-// import SideMenu from "./components/SideMenu.vue";
+import SideLogo from "./components/SideLogo.vue";
+import SideMenu from "./components/SideMenu.vue";
 </script>

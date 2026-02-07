@@ -13,6 +13,7 @@
 <script setup>
 import { useTagsStore, useAppStore } from '@/store'
 import { renderIcon } from '@/utils'
+import { useRoute } from 'vue-router'
 
 const props = defineProps({
   show: {

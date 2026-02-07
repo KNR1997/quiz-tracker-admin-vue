@@ -12,36 +12,47 @@
   />
 </template>
 
-<script setup>
-import { renderCustomIcon, renderIcon } from "@/utils";
+<script setup lang="ts">
+import { renderCustomIcon, renderIcon } from '@/utils'
+import { computed } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 
-const router = useRouter();
+const router = useRouter()
+const curRoute = useRoute()
+
+const activeKey = computed(() => curRoute.meta?.activeMenu || curRoute.name)
 
 const menuOptions = [
   {
-    label: "Workbench",
-    key: "workbench",
-    icon: renderIcon("icon-park-outline:workbench", { size: 18 }),
-    path: "/workbench",
+    label: 'Workbench',
+    key: 'workbench',
+    icon: renderIcon('icon-park-outline:workbench', { size: 18 }),
+    path: '/workbench',
   },
   {
-    label: "Quizzes",
-    key: "quizzes",
-    icon: renderIcon("fluent:quiz-20-regular", { size: 20 }),
-    path: "/quizzes",
+    label: 'Course',
+    key: 'course',
+    icon: renderIcon('material-symbols:book-outline', { size: 18 }),
+    path: '/course',
   },
   {
-    label: "System",
-    key: "system",
-    icon: renderIcon("mdi-account-off", { size: 18 }),
-    path: "/system",
+    label: 'Quizzes',
+    key: 'quizzes',
+    icon: renderIcon('fluent:quiz-20-regular', { size: 20 }),
+    path: '/quizzes',
   },
   {
-    label: "Profile",
-    key: "profile",
-    icon: renderIcon("mdi-account-off", { size: 18 }),
-    path: "/profile",
+    label: 'System',
+    key: 'system',
+    icon: renderIcon('mdi-account-off', { size: 18 }),
+    path: '/system',
   },
+  // {
+  //   label: 'Profile',
+  //   key: 'profile',
+  //   icon: renderIcon('mdi-account-off', { size: 18 }),
+  //   path: '/profile',
+  // },
   // {
   //   label: "Settings",
   //   key: "settings",
@@ -50,10 +61,10 @@ const menuOptions = [
   //     { label: "Security", key: "security", path: '/security'  },
   //   ],
   // },
-];
+]
 
 function handleMenuSelect(key, item) {
-  router.push(item.path);
+  router.push(item.path)
 }
 </script>
 

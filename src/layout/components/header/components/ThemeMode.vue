@@ -1,18 +1,19 @@
 <template>
   <n-icon mr-20 cursor-pointer size="18" @click="toggleDark">
-    <icon-mdi-moon-waning-crescent v-if="isDark" />
-    <icon-mdi-white-balance-sunny v-else />
+    <Icon icon="mdi-moon-waning-crescent" v-if="isDark" />
+    <Icon icon="mdi-white-balance-sunny" v-else />
   </n-icon>
 </template>
 
 <script setup>
-import { useAppStore } from "~/src/store";
-import { useDark, useToggle } from "@vueuse/core";
+import { useAppStore } from '~/src/store'
+import { useDark, useToggle } from '@vueuse/core'
+import { Icon } from '@iconify/vue'
 
-const appStore = useAppStore();
-const isDark = useDark();
+const appStore = useAppStore()
+const isDark = useDark()
 const toggleDark = () => {
-  appStore.toggleDark();
-  useToggle(isDark)();
-};
+  appStore.toggleDark()
+  useToggle(isDark)()
+}
 </script>

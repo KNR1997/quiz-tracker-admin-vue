@@ -24,4 +24,83 @@ export const basicRoutes = [
     ],
     meta: { order: 1 },
   },
+  {
+    name: 'Login-tsdsd',
+    path: '/login',
+    component: () => import('@/views/login/index.vue'),
+    isHidden: true,
+  },
+  {
+    name: 'Quizzes-dev',
+    path: '/quizzes',
+    component: Layout,
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/quiz/index.vue'),
+        name: 'Quizzes',
+        meta: {
+          title: 'Quizzes',
+          icon: 'fluent:quiz-20-regular',
+          affix: true,
+        },
+      },
+    ],
+    meta: { order: 2 },
+  },
+  {
+    name: 'System-dev',
+    path: '/system',
+    component: Layout,
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/system/index.vue'),
+        name: 'System',
+        meta: {
+          title: 'System Default',
+          icon: 'icon-park-outline:workbench',
+          affix: true,
+        },
+      },
+    ],
+    meta: { order: 5 },
+  },
+  {
+    name: 'Course-dev',
+    path: '/course',
+    component: Layout,
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/course/index.vue'),
+        name: 'Course',
+        meta: {
+          title: 'Course Default',
+          icon: 'icon-park-outline:workbench',
+          affix: true,
+        },
+      },
+    ],
+    meta: { order: 5 },
+  },
+  //   {
+  //     name: 'Profile-dev',
+  //     path: '/profile',
+  //     component: Layout,
+  //     isHidden: true,
+  //     children: [
+  //       {
+  //         path: '',
+  //         component: () => import('@/views/profile/index.vue'),
+  //         name: 'Profile',
+  //         meta: {
+  //           title: 'Profile',
+  //           icon: 'user',
+  //           affix: true,
+  //         },
+  //       },
+  //     ],
+  //     meta: { order: 99 },
+  //   },
 ]
