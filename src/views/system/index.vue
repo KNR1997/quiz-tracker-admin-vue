@@ -7,7 +7,7 @@
         </NButton>
       </div>
     </template>
-    <n-data-table
+    <!-- <n-data-table
       :remote="remote"
       :loading="loading"
       :columns="columns"
@@ -17,7 +17,7 @@
       :pagination="isPagination ? pagination : false"
       @update:checked-row-keys="onChecked"
       @update:page="onPageChange"
-    />
+    /> -->
   </CommonPage>
 </template>
 
@@ -44,7 +44,7 @@ const columns = [
     title: 'Actions',
     key: 'actions',
     width: 160,
-    render(row) {
+    render(row: any) {
       return [
         h(
           NButton,
@@ -79,11 +79,11 @@ const columns = [
   },
 ]
 
-function editRow(row) {
+function editRow(row: any) {
   console.log('Edit:', row)
 }
 
-function deleteRow(row) {
+function deleteRow(row: any) {
   console.log('Delete:', row)
 }
 

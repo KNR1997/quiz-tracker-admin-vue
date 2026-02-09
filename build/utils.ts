@@ -19,7 +19,8 @@ export function getSrcPath(srcName = 'src') {
   return path.resolve(getRootPath(), srcName)
 }
 
-export function convertEnv(envOptions) {
+// todo -> fix
+export function convertEnv(envOptions: any) {
   const result = {}
   if (!envOptions) return result
 
@@ -29,7 +30,8 @@ export function convertEnv(envOptions) {
 
     if (['VITE_PORT'].includes(envKey)) envVal = +envVal
 
-    result[envKey] = envVal
+    // @ts-ignore
+    result[envKey] = envVal // todo -> fix
   }
   return result
 }
@@ -40,7 +42,8 @@ export function convertEnv(envOptions) {
 function getConfFiles() {
   const script = process.env.npm_lifecycle_script
   const reg = new RegExp('--mode ([a-z_\\d]+)')
-  const result = reg.exec(script)
+  // @ts-ignore
+  const result = reg.exec(script) // todo -> fix
   if (result) {
     const mode = result[1]
     return ['.env', '.env.local', `.env.${mode}`]

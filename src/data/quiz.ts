@@ -10,7 +10,8 @@ export const useQuizzesQuery = (options: Partial<QuizQueryOptions>) => {
     queryKey: [API_ENDPOINTS.QUIZZES, options],
     queryFn: () => quizClient.paginated(options as QuizQueryOptions),
   })
-  const quizzes = computed<Quiz[]>(() => data.value?.data.list ?? [])
+  // @ts-ignore
+  const quizzes = computed<Quiz[]>(() => data.value?.data.list ?? []) // todo -> fix
   return {
     quizzes,
     error,

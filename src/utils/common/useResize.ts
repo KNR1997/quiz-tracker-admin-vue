@@ -1,6 +1,6 @@
 export function useResize(el: any, cb: any) {
   const observer = new ResizeObserver((entries) => {
-    cb(entries[0].contentRect)
+    cb(entries[0]?.contentRect)
   })
   observer.observe(el)
   return observer

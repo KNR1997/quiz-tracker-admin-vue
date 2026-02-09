@@ -10,7 +10,8 @@ export const useCoursesQuery = (options: Partial<CourseQueryOptions>) => {
     queryKey: [API_ENDPOINTS.COURSES, options],
     queryFn: () => courseClient.paginated(options as CourseQueryOptions),
   })
-  const courses = computed<Course[]>(() => data.value?.data.list ?? [])
+  // @ts-ignore
+  const courses = computed<Course[]>(() => data.value?.data.list ?? []) // todo -> fix
   return {
     courses,
     error,

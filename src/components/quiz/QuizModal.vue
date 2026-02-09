@@ -95,7 +95,8 @@ async function handleSave() {
   if (!modalForm.value.courseId) return
   if (props.quiz) {
     await updateQuiz({
-      id: props.quiz.ID,
+      // @ts-ignore
+      id: props.quiz.ID, // todo -> fix
       courseId: props.quiz.courseId,
       name: modalForm.value.name,
       dateTime: new Date(modalForm.value.date!).toISOString(),

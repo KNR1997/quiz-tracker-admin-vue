@@ -15,7 +15,7 @@ export function crudFactory<Type, QueryParams, InputType>(endpoint: string) {
     create(data: InputType) {
       return HttpClient.post<Type>(endpoint, data)
     },
-    update({ id, ...input }: Partial<InputType> & { id: number }) {
+    update({ id, ...input }: Partial<InputType> & { id: string }) {
       return HttpClient.put<Type>(`${endpoint}/${id}`, input)
     },
     delete({ id }: { id: number }) {

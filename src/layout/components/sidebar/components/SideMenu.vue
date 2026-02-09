@@ -63,7 +63,7 @@ const menuOptions = [
   // },
 ]
 
-function handleMenuSelect(key, item) {
+function handleMenuSelect(key: number, item: any) {
   router.push(item.path)
 }
 </script>
