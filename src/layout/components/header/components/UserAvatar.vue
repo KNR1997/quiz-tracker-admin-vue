@@ -15,16 +15,18 @@ const options = [
   {
     label: 'Profile',
     key: 'profile',
+    // @ts-ignore
     icon: renderIcon('mdi-account-arrow-right-outline', { size: '14px' }),
   },
   {
     label: 'Logout',
     key: 'logout',
+    // @ts-ignore
     icon: renderIcon('mdi:exit-to-app', { size: '14px' }),
   },
 ]
 
-function handleSelect(key) {
+function handleSelect(key: string) {
   if (key === 'profile') {
     router.push('/profile')
   } else if (key === 'logout') {

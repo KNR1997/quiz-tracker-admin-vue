@@ -19,19 +19,20 @@ export async function resetRouter() {
   router.getRoutes().forEach((route) => {
     const name = route.name
     if (!basicRouteNames.includes(name)) {
+      // @ts-ignore
       router.removeRoute(name)
     }
   })
 }
 
-export function getRouteNames(routes) {
-  return routes.map((route) => getRouteName(route)).flat(1)
+export function getRouteNames(routes: any) {
+  return routes.map((route: any) => getRouteName(route)).flat(1)
 }
 
-function getRouteName(route) {
+function getRouteName(route: any) {
   const names = [route.name]
   if (route.children && route.children.length) {
-    names.push(...route.children.map((item) => getRouteName(item)).flat(1))
+    names.push(...route.children.map((item: any) => getRouteName(item)).flat(1))
   }
   return names
 }
