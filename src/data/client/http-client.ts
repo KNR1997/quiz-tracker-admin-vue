@@ -1,4 +1,6 @@
-import axios, { type AxiosError } from 'axios'
+import type { ApiErrorResponse, ApiResponse } from '@/types/api'
+import axios, { type AxiosError, type AxiosRequestConfig } from 'axios'
+import { useMessage } from 'naive-ui'
 
 // create an Axios instance
 const baseURL = import.meta.env.VITE_APP_BASE_API?.trim() || 'http://localhost:8080/api'
@@ -27,37 +29,49 @@ const Axios = axios.create({
 //   (error) => Promise.reject(error)
 // );
 
-// Change response data/error here
-// Axios.interceptors.response.use(
-//   (response) => response,
-//   (error: AxiosError<Result>) => {
-//     const { response, message } = error || {};
+// Response interceptor to handle the consistent API response structure
+Axios.interceptors.response.use(
+  (response) => {
+    // The backend always returns { success, data, message, error }
+    // Return the full response, the HttpClient will extract data
+    return response
+  },
+  (error: AxiosError<ApiErrorResponse>) => {
+    const toast = useMessage()
+    const { response, message } = error || {}
 
-//     const errMsg =
-//       response?.data?.message || message || t("sys.api.errorMessage");
-//     toast.error(errMsg, {
-//       position: "top-center",
-//     });
+    // Extract error message from our consistent API response
+    const errorMessage = response?.data?.message || message || 'An error occurred'
 
-//     const status = response?.status;
-//     if (status === 401) {
-//       useUserStore.getState().actions.clearUserInfoAndToken(); // ✅ clear on 401
-//       useAppStore.getState().openSetup();
-//     }
+    // Log error (you can replace with your toast/notification system)
+    console.error('API Error:', errorMessage)
+    toast.error('error')
 
-//     return Promise.reject(error);
-//   }
-// );
+    // Handle 401 Unauthorized
+    if (response?.status === 401) {
+      // Clear user data and redirect to login
+      localStorage.removeItem('token')
+      // window.location.href = '/login';
+    }
+
+    return Promise.reject(error)
+  },
+)
 
 export class HttpClient {
   static async get<T>(url: string, params?: unknown) {
-    const response = await Axios.get<T>(url, { params })
-    return response.data
+    const response = await Axios.get<ApiResponse<T>>(url, { params })
+    return response.data.data
   }
 
-  static async post<T>(url: string, data: unknown, options?: any) {
-    const response = await Axios.post<T>(url, data, options)
-    return response.data
+  static async post<T>(url: string, data?: unknown, config?: AxiosRequestConfig): Promise<T> {
+    const response = await Axios.post<ApiResponse<T>>(url, data, config)
+
+    if (!response.data.success) {
+      throw new Error(response.data.message)
+    }
+
+    return response.data.data
   }
 
   static async put<T>(url: string, data: unknown) {

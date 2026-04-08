@@ -60,7 +60,7 @@ const courseOptions = computed(
   () =>
     courses.value?.map((course) => ({
       label: course.name,
-      value: course.ID,
+      value: course.id,
     })) ?? [],
 )
 

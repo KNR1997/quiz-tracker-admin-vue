@@ -1,5 +1,5 @@
+import { HttpClient } from '@/api/http-client'
 import type { GetParams, PaginatorInfo } from '@/types'
-import { HttpClient } from './http-client'
 
 export function crudFactory<Type, QueryParams, InputType>(endpoint: string) {
   return {
@@ -18,7 +18,7 @@ export function crudFactory<Type, QueryParams, InputType>(endpoint: string) {
     update({ id, ...input }: Partial<InputType> & { id: string }) {
       return HttpClient.put<Type>(`${endpoint}/${id}`, input)
     },
-    delete({ id }: { id: number }) {
+    delete({ id }: { id: string }) {
       return HttpClient.delete<boolean>(`${endpoint}/${id}`)
     },
   }

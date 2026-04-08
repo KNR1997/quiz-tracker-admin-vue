@@ -46,15 +46,18 @@ export interface LoginInput {
 }
 
 export interface AuthResponse {
+  _id: string
+  name: string
+  email: string
   token: string
-  tokens: { access: string; refresh: string }
-  permissions: string[]
-  role: string
+  // token: string
+  // tokens: { access: string; refresh: string }
+  // permissions: string[]
+  // role: string
 }
 
 export interface Course {
   id: string
-  ID: string // todo -> check this
   name: string
   slug: string
 }
