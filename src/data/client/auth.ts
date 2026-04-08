@@ -4,6 +4,6 @@ import { API_ENDPOINTS } from './api-endpoints'
 
 export const authClient = {
   login: (variables: LoginInput) => {
-    return HttpClient.post<AuthResponse>(API_ENDPOINTS.TOKEN, variables)
+    return HttpClient.post<AuthResponse>(API_ENDPOINTS.LOGIN, variables)
   },
 }

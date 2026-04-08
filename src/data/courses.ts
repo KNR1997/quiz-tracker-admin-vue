@@ -11,7 +11,7 @@ export const useCoursesQuery = (options: Partial<CourseQueryOptions>) => {
     queryFn: () => courseClient.paginated(options as CourseQueryOptions),
   })
   // @ts-ignore
-  const courses = computed<Course[]>(() => data.value?.data.list ?? []) // todo -> fix
+  const courses = computed<Course[]>(() => data.value?.courses ?? []) // todo -> fix
   return {
     courses,
     error,

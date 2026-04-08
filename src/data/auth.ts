@@ -1,9 +1,21 @@
 import { useMutation } from '@tanstack/vue-query'
-import { authClient } from './client/auth'
-import type { LoginInput, AuthResponse } from '@/types'
+import { authClient } from '@/api/auth-client'
+import { setToken } from '@/utils/auth/token'
+import { message } from '@/utils/message'
+import { useRouter } from 'vue-router'
 
 export function useLogin() {
-  return useMutation<AuthResponse, Error, LoginInput>({
+  const router = useRouter()
+
+  return useMutation({
     mutationFn: authClient.login,
+
+    onSuccess: (data) => {
+      setToken(data.token)
+
+      message.success('Login successful')
+
+      router.push('/')
+    },
   })
 }

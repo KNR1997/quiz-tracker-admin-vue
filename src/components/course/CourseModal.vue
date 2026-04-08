@@ -72,7 +72,7 @@ async function handleSave() {
     if (errors) return
     if (props.course) {
       await updateCourse({
-        id: props.course.ID,
+        id: props.course.id,
         name: modalForm.value.name,
         slug: modalForm.value.slug,
       })

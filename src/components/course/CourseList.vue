@@ -22,7 +22,7 @@ const modal = useModalStore()
 // mutation
 const { mutateAsync: deleteCourse } = useDeleteCourseMutation()
 
-function onEdit(course: any) {
+function onEdit(course: Course) {
   modal.open(CourseModal, {
     title: 'Edit Quiz',
     props: {
@@ -31,8 +31,8 @@ function onEdit(course: any) {
   })
 }
 
-async function deleteRow(row: any) {
-  await deleteCourse({ id: row.ID })
+async function deleteRow(row: Course) {
+  await deleteCourse({ id: row.id })
 }
 
 const columns = [
